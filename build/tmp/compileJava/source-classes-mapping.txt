@@ -1,0 +1,15 @@
+org/funnycoin/transactions/Transaction.java
+ org.funnycoin.transactions.Transaction
+org/funnycoin/FunnycoinCache.java
+ org.funnycoin.FunnycoinCache
+org/funnycoin/miner/VerificationUtils.java
+ org.funnycoin.miner.VerificationUtils
+org/funnycoin/wallet/Wallet.java
+ org.funnycoin.wallet.Wallet
+org/funnycoin/blocks/Block.java
+ org.funnycoin.blocks.Block
+org/funnycoin/Funnycoin.java
+ org.funnycoin.Funnycoin
+ org.funnycoin.Funnycoin$NodeType
+org/funnycoin/SignatureTesting.java
+ org.funnycoin.SignatureTesting

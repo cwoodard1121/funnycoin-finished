@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+}
+
+group 'org.funnycoin'
+version '0.05'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.68'
+    compile fileTree("libs")
+}
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'org.funnycoin.Funnycoin'
+        )
+    }
+}
+test {
+    useJUnitPlatform()
+}

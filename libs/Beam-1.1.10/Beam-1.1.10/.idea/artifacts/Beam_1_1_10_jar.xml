@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Beam-1.1.10:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Beam_1_1_10_jar</output-path>
+    <root id="archive" name="Beam-1.1.10.jar">
+      <element id="module-output" name="Beam-1.1.10" />
+    </root>
+  </artifact>
+</component>
