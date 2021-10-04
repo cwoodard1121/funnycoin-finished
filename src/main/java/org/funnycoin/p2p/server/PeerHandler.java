@@ -186,7 +186,8 @@ public class PeerHandler extends BeamHandler {
                     System.out.println("the chain is not valid");
                 }
             } catch (Exception e) {
-                System.out.println("EXCEPTION BRO");
+                //TODO: REMOVE LATER BECAUSE IT WILL BE SPAMMY
+                System.out.println("exception");
                 e.printStackTrace();
             }
         } else if(beamMessage.get("event").toLowerCase().contains("nodejoin")) {
@@ -201,11 +202,10 @@ public class PeerHandler extends BeamHandler {
                 try {
                     if(p.peerIsOnline()) {
                         p.connectToPeer();
-                        System.out.println("added");
+                        System.out.println("added peer to array");
                         PeerLoader.peers.add(p);
                         FunnycoinCache.peerLoader.syncPeerFile();
                         RequestParams.peerAdded = true;
-                        System.out.println(RequestParams.peerAdded);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -57,17 +57,15 @@ public class PeerLoader {
                 }
             }
         }
-        System.out.println("SIZE: " + peers.size());
         if(peers.size() == 0) {
             System.out.println("we dont have any peers unfortunately, gonna wait till someone tries to connect to someone i guess.");
             while ((peers.size() == 0 && !RequestParams.test) || checkPeerAdded()) {
-                if(peersArray.length > 0) {
-                    if(peersArray.length > 0) {
+                if (peersArray.length > 0) {
+                    if (peersArray.length > 0) {
                         for (int k = 0; k < peersArray.length; k++) {
                             Peer p = peersArray[k];
                             if (p.peerIsOnline()) {
                                 try {
-                                    System.out.println(p.address + ":" + p.port);
                                     System.out.println("connecting");
                                     peers.add(p);
                                     p.connectToPeer();
@@ -79,9 +77,8 @@ public class PeerLoader {
                         }
                     }
                 }
-                if(peers.size() > 0 || checkPeerAdded()) break;
+                if (peers.size() > 0 || checkPeerAdded()) break;
             }
-            System.out.println("hey");
         } else {
             System.out.println("peers added successfully!");
         }
@@ -89,18 +86,15 @@ public class PeerLoader {
         System.out.println(peers.size());
         peers.forEach(peer -> {
             try {
-                System.out.println("cch");
                 peer.socket.queueMessage(new BeamMessage().set("event","getHeight").set("adHash",FunnycoinCache.getAdHash()));
                 System.out.println("sent msg to:" + peer.port);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-        System.out.println("aftert cch");
         while(RequestParams.needsBlocks) {
             if(!RequestParams.needsBlocks) break;
         }
-        System.out.println("added peers");
     }
 
 }
