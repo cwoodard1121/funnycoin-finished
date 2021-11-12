@@ -80,14 +80,10 @@ public class PeerLoader {
                 if (peers.size() > 0 || checkPeerAdded()) break;
             }
         } else {
-            System.out.println("peers added successfully!");
         }
-        System.out.println("hey2");
-        System.out.println(peers.size());
         peers.forEach(peer -> {
             try {
                 peer.socket.queueMessage(new BeamMessage().set("event","getHeight").set("adHash",FunnycoinCache.getAdHash()));
-                System.out.println("sent msg to:" + peer.port);
             } catch (IOException e) {
                 e.printStackTrace();
             }
