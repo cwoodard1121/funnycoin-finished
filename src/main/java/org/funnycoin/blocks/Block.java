@@ -36,7 +36,6 @@ public class Block {
         RequestParams.interrupted = false;
         merkleRoot = getMerkleRoot(transactions);
         String targetHash = new String(new char[diff]).replace('\0', '0');
-        System.out.println("mining block " + diff);
         while (!hash.substring(0, diff).equals(targetHash)) {
             if (RequestParams.interrupted) {
                 return false;
@@ -44,7 +43,6 @@ public class Block {
             nonce++;
             hash = getHash();
         }
-        System.out.println("block successfully mined with a nonce of: " + nonce);
         return true;
     }
 
