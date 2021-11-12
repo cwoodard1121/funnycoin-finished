@@ -18,7 +18,7 @@ public class Peer {
 
     public void connectToPeer() {
         try {
-            socket = new BeamClient(InetAddress.getLoopbackAddress().getHostAddress(),"mam",port,false);
+            socket = new BeamClient(InetAddress.getLoopbackAddress().getHostAddress(),"clients141",port,false);
             socket.connect();
             socket.addHandler(PeerHandler.class);
             socket.setIncomingConnectionTypes(new ConnectionType.Incoming[]{ConnectionType.Incoming.DIRECT});
