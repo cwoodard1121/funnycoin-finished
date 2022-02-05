@@ -76,11 +76,8 @@ public class PeerHandler extends BeamHandler {
             JsonParser parser = new JsonParser();
             JsonObject obj = (JsonObject) parser.parse(beamMessage.get("message"));
             System.out.println("TRANSACTION RECIEVED: " + beamMessage.get("message"));
-            System.out.println("whats up");
-            System.out.println(getBalanceFromChain(obj.get("ownerWallet").getAsString(),obj.get("token").getAsString()) + " AA" + obj.get("amount").getAsFloat());
             if(getBalanceFromChain(obj.get("ownerWallet").getAsString(),obj.get("token").getAsString()) > obj.get("amount").getAsFloat()) {
                 System.out.println("balance valid");
-                // Think it works.
                 RequestParams.interrupted = true;
                 String ownerWallet = obj.get("ownerWallet").getAsString();
                 String targetWallet = obj.get("targetWallet").getAsString();
@@ -88,7 +85,6 @@ public class PeerHandler extends BeamHandler {
                 String token = obj.get("token").getAsString();
                 int version = obj.get("version").getAsInt();
                 String signature = obj.get("signature").getAsString();
-                System.out.println(signature + " sig");
 
                 String txHash = applySha256(ownerWallet + targetWallet + amount + token + version);
 
@@ -118,7 +114,6 @@ public class PeerHandler extends BeamHandler {
 
         if(beamMessage.get("event").toLowerCase().contains("heightresponse")) {
             System.out.println("heightresponse, " + (FunnycoinCache.blockChain.size() < 1 ? 0 : FunnycoinCache.blockChain.size() - 1));
-            System.out.println(Integer.parseInt(beamMessage.get("height")));
             if((FunnycoinCache.blockChain.size() < 1 ? 0 : FunnycoinCache.blockChain.size() - 1) < Integer.parseInt(beamMessage.get("height"))) {
                 FunnycoinCache.peerLoader.peers.forEach(p -> {
                     try {
