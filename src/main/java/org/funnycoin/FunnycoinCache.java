@@ -10,6 +10,7 @@ import org.funnycoin.p2p.server.PeerServer;
 import org.funnycoin.wallet.Wallet;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.InvalidAlgorithmParameterException;
@@ -138,6 +139,45 @@ public class FunnycoinCache {
         //return reader.readLine();
     }
 
+    public static double getDifficulty() {
+        // get last 16 blocks
+
+        BigInteger difficulty = BigInteger.valueOf(0);
+
+
+        if(blockChain.size() < 16) return getDifficulty;
+        // get timestamp difference
+        for(int i = blockChain.size() - 1; i > blockChain.size() - 17; i--) {
+            Block currentBlock = blockChain.get(i);
+            difficulty.add(BigInteger.valueOf(currentBlock.timeStamp));
+        }
+
+        return (int) log(difficulty).divide(log(BigInteger.valueOf(2))).doubleValue();
+    }
+
+    public static BigInteger log(BigInteger value) {
+        if (value.compareTo(BigInteger.ZERO) <= 0) {
+            throw new IllegalArgumentException("Input must be a positive integer");
+        }
+
+        int bitLength = value.bitLength();
+        BigInteger lo = BigInteger.ZERO;
+        BigInteger hi = new BigInteger(Integer.toString(bitLength));
+
+        while (lo.compareTo(hi) < 0) {
+            BigInteger mid = lo.add(hi).shiftRight(1);
+            if (value.compareTo(BigInteger.ONE.shiftLeft(mid.intValue())) > 0) {
+                lo = mid.add(BigInteger.ONE);
+            } else {
+                hi = mid;
+            }
+        }
+
+        return lo.subtract(BigInteger.ONE);
+    }
+
+
     public static JsonParser parser = new JsonParser();
+
 
 }
